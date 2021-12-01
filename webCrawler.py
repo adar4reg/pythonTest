@@ -63,8 +63,13 @@ def getData(_src, _header):
 for i in range(3):
     src=getData(src, header)
 printlist(data)
-
-
+def getlist():
+    return data
+def gettxt():
+    _txt=str()
+    for i in data:
+        _txt+=str(i)+"<br>\n"
+    return _txt
 
 # src="https://www.ptt.cc/bbs/movie/index.html"
 # headers = {'user-agent': 'Mozilla/5.0'} 
