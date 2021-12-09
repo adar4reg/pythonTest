@@ -176,6 +176,7 @@ tmpdata["new"]="new"
 print (tmpdata)
 with open("tmp.json", mode="w", encoding="utf-8") as tmpfile:
      json.dump(tmpdata, tmpfile)
+     json.dumps(tmpdata, tmpfile)
 
 with open("tmp.json", mode="r+", encoding="utf-8") as tmpfile:
     tmpdata=json.load(tmpfile)
@@ -213,6 +214,35 @@ import testclass as test
 tc=test.IO("console")
 tc.check()
 test.IO.check("console")
+
+# #send mail
+# import email.message 
+
+# #建立訊息物件 
+# msg= email.message.EmailMessage() 
+
+# #訊息物件基本設定 
+# msg["From"] ="adar4tmp@gmail.com"
+# # msg["To"] ="2100786@systexsoftware.com.tw, terryyang@systexsoftware.com.tw, "
+# msg["To"] ="adar4job@gmail.com, adar4reg@gmail.com"
+# msg["Cc"] ="adar4tmp@gmail.com"
+# msg["Subject"] ="發信測試"
+# msg.set_content("EMAIL訊息內容") 
+
+# #加入HTML內容 
+# # msg.add_alternative("<h3>HTML內容</h3>", subtype="html") 
+# import smtplib 
+# #連線smtp 
+# Server = smtplib.SMTP_SSL("smtp.gmail.com", 465) 
+
+# #發送 
+# Server.login("adar4tmp@gmail.com", "superwind") 
+# print(Server.send_message(msg) )
+# Server.close() 
+
+ 
+
+
 # tc.check("console")
 
 #import就會執行裡面的主程式
@@ -239,4 +269,84 @@ test.IO.check("console")
 #變數宣告
 #變數不可用數字開頭
 
+def printIterable(_iterable):
+    for x in _iterable:
+        print(x)
+# #iterable
+# iterable= (1,2,3) #Tuple
+# printIterable(iterable);
+# iterable={3,4,5} #set
+# printIterable(iterable);
+# iterable=["c","b", "a"] #list
+# printIterable(iterable);
+# iterable={ "蘋果":"apple", "資料":"data"} #dic
+# printIterable(iterable);
 
+# #Generator
+# def my_generator():
+#     print("new value is generated!1")
+#     yield 5
+#     print("new value is generated!2")
+#     yield 10
+#     for x in range(1, 10):
+#         print("new value is generated!"+str(x))
+#         yield x
+
+# def even_generator():
+#     x=0
+#     while True:
+#         x+=2
+#         print("new value is generated!"+str(x))
+#         yield x
+# # iterable= my_generator()
+# iterable= even_generator()
+# # printIterable(iterable)
+
+# print(iterable.__next__())
+# print(next(iterable))
+
+# #callback
+# def test(arg,data):
+#     arg(data)
+# def handle(data): 
+#     print(data)
+# test(handle,100)
+
+
+##裝飾器
+# def testDecorator(_callback): 
+#     def  innerfun(): 
+# #處理邏輯 
+#         print("innerfun")
+#         _callback(3) 
+#     return innerfun 
+# @testDecorator
+# def decoratedfun(data): 
+# #處理邏輯 
+#     print("decoratedfun", data)
+# decoratedfun() 
+
+
+
+##裝飾器工廠
+def testFactory(base):
+    print("testFactory")
+    def testDecorator(_callback): 
+        def  innerfun(): 
+    #處理邏輯 
+            print("innerfun")
+            result=base*3
+            _callback(result) 
+        return innerfun 
+    return testDecorator 
+
+@testFactory(3)
+def decoratedfun(data): 
+    print("decoratedfun", data)
+
+decoratedfun() 
+
+
+@testFactory(3)
+def decoratedCfun(data): 
+    print("裝飾器功能", data)
