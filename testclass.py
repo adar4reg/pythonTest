@@ -50,3 +50,9 @@ n1=Name("terry","yang")
 print(n1.name)
 n1.show()    
 print(n1.get())
+
+
+import os
+os.system("dir")
+os.system("cd")
+print("get_exec_path",os.get_exec_path())

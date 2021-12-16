@@ -26,17 +26,22 @@ print ("resultlist")
 #     for j in i:
 #         print(j)
 
-import pyodbc 
+import pyodbc #很白癡，直接用python sqlite3連即可
 # Some other example server values are
 # server = 'localhost\sqlexpress' # for a named instance
 # server = 'myserver,port' # to specify an alternate port
 server = 'tcp:127.0.0.1' 
 server = 'localhost' 
-database = 'xfilm.db' 
+database = 'film.db' 
+database = 'C:\\temp\\sqlite\\film.db' 
 username = 'myusername' 
 password = 'mypassword' 
-# cnxn = pyodbc.connect('DRIVER={SQLite3 ODBC Driver};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-cnxn = pyodbc.connect('DRIVER={SQLite3 ODBC Driver};SERVER='+server+';DATABASE='+database+';Trusted_connection=yes')
+DSN='film' 
+# Trusted_connection=yes  #Windows 驗證的資料來源提供者，不是使用者識別碼和密碼資訊。
+# connectstr='DRIVER={SQLite3 ODBC Driver};SERVER='+server+';DATABASE='+database+';Trusted_connection=yes'
+# connectstr="DRIVER={SQLite3 ODBC Driver};DSN="+DSN+";server="+server+";Trusted_connection=yes"
+connectstr='DRIVER={SQLite3 ODBC Driver};DATABASE='+database  #OK，很白癡，直接用python連即可
+cnxn = pyodbc.connect(connectstr)
 # cursor = cnxn.cursor()
 
 print (cnxn.execute('select name from sqlite_master where type=\'table\' order by name; '))
